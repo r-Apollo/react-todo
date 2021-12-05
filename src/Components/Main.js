@@ -1,12 +1,99 @@
 import { Component } from "react";
 import main from "./../styles/main.css"
 import Navbar from "./Navbar";
+import Tasklist from "./Tasklist";
 
 class Main extends Component {
+
+    constructor() {
+        super()
+
+        this.state = {
+            addingMode: false,
+            task: {
+                text: "",
+            },
+            tasks: [],
+        }
+
+        this.enableInput = this.enableInput.bind(this)
+        this.handleChange = this.handleChange.bind(this)
+        this.addTask = this.addTask.bind(this)
+        this.cancelTask = this.cancelTask.bind(this)
+    }
+
+    handleChange(e) {
+        this.setState({
+            task: {
+                text: e.target.value,
+            },
+        })
+    }
+
+    addTask(e) {
+        e.preventDefault()
+        this.setState({
+            tasks: this.state.tasks.concat(this.state.task),
+            task: {
+                text: "",
+            },
+            addingMode: false,
+        })
+    }
+
+    cancelTask() {
+        this.setState({
+            addingMode: false,
+            task: {
+                text: ""
+            },
+        })
+    }
+
+    enableInput() {
+        this.setState({
+            addingMode: true,
+        })
+    }
+
     render() {
+        const { task, tasks } = this.state;
         return(
+            this.state.addingMode ? (
+                <div className="main">
+                    <div className="heading">
+                        <h1>Tasks</h1>
+                    </div>
+                    <Tasklist tasks={tasks} />
+                    <form onSubmit={this.addTask} className="adding">
+                        <input
+                            onChange={this.handleChange}
+                            value={task.text}
+                            type="text"
+                            id="taskInput"
+                        />
+                        <div>
+                            <button type="submit" className="add-task">Add Task</button>
+                            <button onClick={this.cancelTask} className="cancel-task">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            ) : (
             <div className="main">
+                <div className="heading">
+                    <h1>Tasks</h1>
+                </div>
+                <Tasklist tasks={tasks} />
+                <div className="adding">
+                    <button onClick={this.enableInput} className="adding">
+                        <div>
+                            <i class="fas fa-plus"></i>
+                            <p>Add Task</p>
+                        </div>
+                    </button>
+                </div>
             </div>
+            )
         )
     }
 }
