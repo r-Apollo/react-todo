@@ -1,16 +1,21 @@
 import React from "react";
 import tasklist from "./../styles/tasklist.css"
+import Date from "./Date";
 
 const Tasklist = (props) => {
   const { tasks } = props;
 
   return (
     <div className="tasks">
-      <ul>
-        {tasks.map((task) => {
-          return <li key={task.id}>{task.text}</li>;
+      {tasks.map((task) => {
+          return <button>
+            <div>
+              <i class="far fa-circle"></i>
+              {task.text}
+            </div>
+            <Date />
+            </button>;
         })}
-      </ul>
     </div>
   );
 };

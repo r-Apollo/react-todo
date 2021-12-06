@@ -32,6 +32,11 @@ class Main extends Component {
 
     addTask(e) {
         e.preventDefault()
+        console.log(this.state.task)
+        if(this.state.task.text == "") {
+            alert("You need to enter a task!")
+            return
+        }
         this.setState({
             tasks: this.state.tasks.concat(this.state.task),
             task: {

@@ -1,0 +1,19 @@
+.tasks {
+    display: flex;
+    flex-direction: column;
+    align-items: space-between;
+    gap: .8em;
+}
+
+.tasks button {
+    display: flex;
+    align-items: center;
+    gap: .3em;
+    text-align: left;
+    background-color: #eeeeee;
+}
+
+.tasks button i {
+    display: flex;
+    align-items: center;
+}
