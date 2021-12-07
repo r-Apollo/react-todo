@@ -73,3 +73,12 @@
 .main form div .cancel-task {
     background-color: rgba(255, 71, 87, .5);
 }
+
+.main input {
+    color: #333333;
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+
+    padding: 0px 12px;
+}

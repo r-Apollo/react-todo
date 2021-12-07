@@ -21,6 +21,7 @@ class Main extends Component {
         this.addTask = this.addTask.bind(this)
         this.cancelTask = this.cancelTask.bind(this)
         this.inTasks = this.inTasks.bind(this)
+        this.deleteTask = this.deleteTask.bind(this)
     }
 
     inTasks(taskText) {
@@ -62,6 +63,14 @@ class Main extends Component {
         })
     }
 
+    deleteTask(key) {
+        this.setState({
+            tasks: this.state.tasks.filter((task) => {
+                return task.key != key
+            })
+        })
+    }
+
     cancelTask() {
         this.setState({
             addingMode: false,
@@ -86,7 +95,7 @@ class Main extends Component {
                     <div className="heading">
                         <h1>Tasks</h1>
                     </div>
-                    <Tasklist tasks={tasks} />
+                    <Tasklist tasks={tasks} deleteTask={this.deleteTask}/>
                     <form onSubmit={this.addTask} className="adding">
                         <input
                             onChange={this.handleChange}
@@ -105,7 +114,7 @@ class Main extends Component {
                 <div className="heading">
                     <h1>Tasks</h1>
                 </div>
-                <Tasklist tasks={tasks} />
+                <Tasklist tasks={tasks} deleteTask={this.deleteTask}/>
                 <div className="adding">
                     <button onClick={this.enableInput} className="adding">
                         <div>
