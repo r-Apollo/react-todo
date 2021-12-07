@@ -1,0 +1,16 @@
+.task {
+    display: flex;
+}
+
+.edit {
+    color: #333333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.task button.edit-btn {
+    display: flex;
+    justify-content: center;
+    width: 40px;
+}

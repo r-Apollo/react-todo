@@ -22,6 +22,7 @@ class Main extends Component {
         this.cancelTask = this.cancelTask.bind(this)
         this.inTasks = this.inTasks.bind(this)
         this.deleteTask = this.deleteTask.bind(this)
+        this.changeTask = this.changeTask.bind(this)
     }
 
     inTasks(taskText) {
@@ -71,6 +72,16 @@ class Main extends Component {
         })
     }
 
+    changeTask(key) {
+        let newTask = "dummy data"
+        for(let i =0; i<this.state.tasks.length; i++) {
+            if (this.state.tasks[i].key !== key) {continue}
+            else {
+                console.log("test")
+            }
+        }
+    }
+
     cancelTask() {
         this.setState({
             addingMode: false,
@@ -95,7 +106,7 @@ class Main extends Component {
                     <div className="heading">
                         <h1>Tasks</h1>
                     </div>
-                    <Tasklist tasks={tasks} deleteTask={this.deleteTask}/>
+                    <Tasklist tasks={tasks} deleteTask={this.deleteTask} changeTask={this.changeTask} />
                     <form onSubmit={this.addTask} className="adding">
                         <input
                             onChange={this.handleChange}
@@ -114,7 +125,7 @@ class Main extends Component {
                 <div className="heading">
                     <h1>Tasks</h1>
                 </div>
-                <Tasklist tasks={tasks} deleteTask={this.deleteTask}/>
+                <Tasklist tasks={tasks} deleteTask={this.deleteTask} changeTask={this.changeTask}/>
                 <div className="adding">
                     <button onClick={this.enableInput} className="adding">
                         <div>
