@@ -1,6 +1,5 @@
 import { Component } from "react";
-import main from "./../styles/main.css"
-import Navbar from "./Navbar";
+import "./../styles/main.css"
 import Tasklist from "./Tasklist";
 
 class Main extends Component {
@@ -12,6 +11,7 @@ class Main extends Component {
             addingMode: false,
             task: {
                 text: "",
+                key: null
             },
             tasks: [],
         }
@@ -24,25 +24,27 @@ class Main extends Component {
     }
 
     inTasks(taskText) {
-        Array.from(this.state.tasks).forEach((task) => {
-            console.log(task.text == taskText);
-            if(taskText == task.text) {
-                return true
+        let found = false
+        Array.from(this.state.tasks).forEach((task) => { //foreach doesnt care about retun statement
+            if(taskText === task.text) {
+                found = true
             }
         })
+        return found
     }
 
     handleChange(e) {
         this.setState({
             task: {
                 text: e.target.value,
+                key: this.state.tasks.length
             },
         })
     }
 
     addTask(e) {
         e.preventDefault()
-        if(this.state.task.text == "") {
+        if(this.state.task.text === "") {
             alert("You need to enter a task!")
             return
         } else if (this.inTasks(this.state.task.text)) {
@@ -54,6 +56,7 @@ class Main extends Component {
             tasks: this.state.tasks.concat(this.state.task),
             task: {
                 text: "",
+                key: null,
             },
             addingMode: false,
         })
@@ -63,7 +66,8 @@ class Main extends Component {
         this.setState({
             addingMode: false,
             task: {
-                text: ""
+                text: "",
+                key: null,
             },
         })
     }
@@ -105,7 +109,7 @@ class Main extends Component {
                 <div className="adding">
                     <button onClick={this.enableInput} className="adding">
                         <div>
-                            <i class="fas fa-plus"></i>
+                            <i className="fas fa-plus"></i>
                             <p>Add Task</p>
                         </div>
                     </button>

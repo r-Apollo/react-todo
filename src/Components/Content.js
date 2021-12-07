@@ -1,7 +1,7 @@
 import { Component } from "react";
 import Main from "./Main";
 import Navbar from "./Navbar";
-import content from "./../styles/content.css"
+import "./../styles/content.css"
 
 class Content extends Component {
     render() {
