@@ -66,7 +66,7 @@ class Main extends Component {
     deleteTask(key) {
         this.setState({
             tasks: this.state.tasks.filter((task) => {
-                return task.key != key
+                return task.key !== key
             })
         })
     }
