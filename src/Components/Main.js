@@ -20,6 +20,16 @@ class Main extends Component {
         this.handleChange = this.handleChange.bind(this)
         this.addTask = this.addTask.bind(this)
         this.cancelTask = this.cancelTask.bind(this)
+        this.inTasks = this.inTasks.bind(this)
+    }
+
+    inTasks(taskText) {
+        Array.from(this.state.tasks).forEach((task) => {
+            console.log(task.text == taskText);
+            if(taskText == task.text) {
+                return true
+            }
+        })
     }
 
     handleChange(e) {
@@ -32,11 +42,14 @@ class Main extends Component {
 
     addTask(e) {
         e.preventDefault()
-        console.log(this.state.task)
         if(this.state.task.text == "") {
             alert("You need to enter a task!")
             return
+        } else if (this.inTasks(this.state.task.text)) {
+            alert("Every Task should be unique!")
+            return
         }
+        this.inTasks(this.state.task)
         this.setState({
             tasks: this.state.tasks.concat(this.state.task),
             task: {
